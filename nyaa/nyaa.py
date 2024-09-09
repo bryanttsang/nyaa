@@ -20,4 +20,4 @@ for title, magnet, timestamp in regex.findall(html):
     if int(timestamp) < last_ran_on:
         break
     print(title)
-    subprocess.run(["open", magnet])
+    subprocess.run(["open", magnet.replace('&amp;', '&')])
