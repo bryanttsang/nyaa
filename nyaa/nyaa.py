@@ -1,9 +1,12 @@
 import requests
 import re
 import time
+import pathlib
 import subprocess
 
 regex = re.compile(r'<tr class=\"success.+?title=\"\[SubsPlease\] (.+?) \(1080p\).+?href=\"(magnet.+?)\">.+?data-timestamp=\"(\d+?)\">.+?</tr>')
+
+pathlib.Path('~/Library/Application Support/uTorrent Web/resume.dat').expanduser().unlink(missing_ok=True)
 
 with open('anime.txt', 'r') as f:
     lines = f.read().splitlines()
@@ -20,4 +23,4 @@ for title, magnet, timestamp in regex.findall(html):
     if int(timestamp) < last_ran_on:
         break
     print(title)
-    subprocess.run(["open", magnet.replace('&amp;', '&')])
+    subprocess.run(['open', magnet.replace('&amp;', '&')])
