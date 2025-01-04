@@ -10,7 +10,7 @@ pathlib.Path('~/Library/Application Support/uTorrent Web/resume.dat').expanduser
 
 with open('anime.txt', 'r') as f:
     lines = f.read().splitlines()
-query = '"|"'.join([f'{title.strip()}' for title in lines])
+query = '"|"'.join([f'{title.strip()}' for title in lines if title])
 url = f'https://nyaa.si/user/subsplease?f=0&c=1_2&q=1080p+-batch+("{query}")'
 
 with open('last_ran_on', 'r+') as f:
